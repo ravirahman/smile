@@ -1,0 +1,8 @@
+google
+Flask
+gunicorn
+google-cloud-storage
+google-cloud-vision
+grpcio-tools
+numpy
+opencv-python
