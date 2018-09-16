@@ -36,15 +36,19 @@ RUN virtualenv /env -p python3.6
 # source /env/bin/activate.
 ENV VIRTUAL_ENV /env
 ENV PATH /env/bin:$PATH
+ENV APPDIR $PWD
 
 # Copy the application's requirements.txt and run pip to install all
 # dependencies into the virtualenv.
 ADD requirements.txt /app/requirements.txt
 RUN pip install -r /app/requirements.txt
 
-RUN mkdir -p dlib && \
+RUN cd ~/ && \
+    mkdir -p ~/dlib && \
     git clone https://github.com/davisking/dlib.git ~/dlib/ && \
-    python ~/dlib/setup.py install --yes USE_AVX_INSTRUCTIONS
+    cd dlib && \
+    python setup.py install --yes USE_AVX_INSTRUCTIONS && \
+    cd $APPDIR
 
 ADD . /app
 

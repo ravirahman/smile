@@ -22,19 +22,19 @@ class ImageMerger:
     def merge_image(config, base_image_path: str, new_image_path: str, replacements: [Replacement]):
         base_image = cv2.imread(base_image_path)
         for replacement in replacements:
-            plt.imshow(base_image)
-            plt.show()
+            # plt.imshow(base_image)
+            # plt.show()
             base_crop_dims = ImageMerger.get_crop_dims(replacement.original_face.bounding_poly.vertices)
             base_cropped_img = ImageMerger.crop_image(base_image, base_crop_dims)
-            plt.imshow(base_cropped_img)
-            plt.show()
+            # plt.imshow(base_cropped_img)
+            # plt.show()
             base_image_points = ImageMerger.recognize_points(base_cropped_img) + base_crop_dims[0]  # add back the crop
 
             new_img = cv2.imread(replacement.new_image_path)
             new_crop_dims = ImageMerger.get_crop_dims(replacement.new_face.bounding_poly.vertices)
             new_cropped_img = ImageMerger.crop_image(new_img, new_crop_dims)
-            plt.imshow(new_cropped_img)
-            plt.show()
+            # plt.imshow(new_cropped_img)
+            # plt.show()
             new_image_points = ImageMerger.recognize_points(new_cropped_img) + new_crop_dims[0]
 
             alpha = config["alpha"]
@@ -79,8 +79,8 @@ class ImageMerger:
         # Display Result
         new_image = np.uint8(base_image)
         cv2.imwrite(new_image_path, new_image)
-        plt.imshow(new_image)
-        plt.show()
+        # plt.imshow(new_image)
+        # plt.show()
 
     @staticmethod
     def get_crop_dims(vertices):

@@ -112,7 +112,6 @@ class ImagesProcessor:
         try:
             blob = self.bucket.blob("config.json")
             config_string = blob.download_as_string()
-            print(config_string)
             config_json = json.loads(config_string)
             results[index] = config_json
         except Exception as e:
