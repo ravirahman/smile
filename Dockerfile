@@ -1,7 +1,7 @@
 FROM gcr.io/google-appengine/python
 
 RUN apt-get update
-RUN apt-get install -y --fix-missing \
+RUN apt-get install -y \
     python-opencv \
     python3-numpy \
     build-essential \

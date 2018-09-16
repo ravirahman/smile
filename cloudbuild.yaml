@@ -1,5 +1,7 @@
 steps:
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'gcr.io/my-project/my-image', '.']
-  timeout: 1200s
-timeout: 1200s
+  timeout: 1800s
+  args: [ 'build', '-t', 'gcr.io/$PROJECT_ID/quickstart-image', '.' ]
+timeout: 1800s
+images:
+- 'gcr.io/$PROJECT_ID/quickstart-image'

@@ -1,16 +1,16 @@
 {
-  "alpha": 0.5,
+  "alpha": 0.8,
   "weights": {
-    "detection_confidence":0.1,
-    "sorrow_likelihood":0.1,
-    "surprise_likelihood":0.1,
+    "detection_confidence":0.0,
+    "sorrow_likelihood":0.05,
+    "surprise_likelihood":0.05,
     "under_exposed_likelihood":0.1,
     "blurred_likelihood":0.1,
     "roll_angle":0.1,
-    "joy_likelihood":0.1,
-    "anger_likelihood":0.1,
+    "joy_likelihood":0.2,
+    "anger_likelihood":0.05,
     "headwear_likelihood":0.0,
     "tilt_angle":0.1,
-    "pan_angle":0.1
+    "pan_angle":0.2
   }
 }

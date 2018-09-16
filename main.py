@@ -1,6 +1,6 @@
 import logging
 import json
-from flask import Flask, request
+from flask import Flask, request, jsonify
 from google.cloud import vision
 from google.cloud import storage
 
@@ -30,7 +30,7 @@ def process_images():
         raise Exception("missing image_uris")
     image_gs_uris = data["image_uris"]
     result_uri = ip.process_images(image_gs_uris)
-    return json.dumps({
+    return jsonify({
         "image_uri": result_uri,
     })
 
