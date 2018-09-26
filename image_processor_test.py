@@ -82,47 +82,46 @@ sample_face_2 = AttrDict({
     "headwear_likelihood": 1,
 })
 
-
-def test_scale():
-    assert image_processor.ImagesProcessor.scale(11, 10, 20) == 0.1
-    assert image_processor.ImagesProcessor.scale(11, 20, 10) == 0.9
-
-
-def test_score_face():
-    with open("config.json") as configFile:
-        config = json.load(configFile)
-        scored_face = image_processor.ImagesProcessor.score_face(config, sample_face_1)
-        assert scored_face == 0.9764099833435482
-
-
-def test_get_face_centers():
-    face_centers = image_processor.ImagesProcessor.get_face_centers([sample_face_1])
-    assert len(face_centers) == 1
-    assert face_centers[0][0] == 558
-    assert face_centers[0][1] == 782
-
-
-def test_get_face_vectors():
-    face_centers = image_processor.ImagesProcessor.get_face_centers([sample_face_1])
-    face_vectors = image_processor.ImagesProcessor.get_face_vectors(face_centers)
-    assert len(face_vectors) == 1
-    assert face_vectors[0][0] == 0
-    assert face_vectors[0][1] == 0
-
-    face_centers_2 = image_processor.ImagesProcessor.get_face_centers([sample_face_1, sample_face_2])
-    face_vectors_2 = image_processor.ImagesProcessor.get_face_vectors(face_centers_2)
-    assert len(face_vectors_2) == 2
-    assert face_vectors_2[0][0] == -0.8374351868224612
-    assert face_vectors_2[0][1] == 0.5465366482420273
-
-    assert face_vectors_2[1][0] == 0.8374351868224612
-    assert face_vectors_2[1][1] == -0.5465366482420273
+#
+# def test_scale():
+#     assert image_processor.ImagesProcessor.scale(11, 10, 20) == 0.1
+#     assert image_processor.ImagesProcessor.scale(11, 20, 10) == 0.9
+#
+#
+# def test_score_face():
+#     with open("config.json") as configFile:
+#         config = json.load(configFile)
+#         scored_face = image_processor.ImagesProcessor.score_face(config, sample_face_1)
+#         assert scored_face == 0.9764099833435482
+#
+#
+# def test_get_face_centers():
+#     face_centers = image_processor.ImagesProcessor.get_face_centers([sample_face_1])
+#     assert len(face_centers) == 1
+#     assert face_centers[0][0] == 558
+#     assert face_centers[0][1] == 782
+#
+#
+# def test_get_face_vectors():
+#     face_centers = image_processor.ImagesProcessor.get_face_centers([sample_face_1])
+#     face_vectors = image_processor.ImagesProcessor.get_face_vectors(face_centers)
+#     assert len(face_vectors) == 1
+#     assert face_vectors[0][0] == 0
+#     assert face_vectors[0][1] == 0
+#
+#     face_centers_2 = image_processor.ImagesProcessor.get_face_centers([sample_face_1, sample_face_2])
+#     face_vectors_2 = image_processor.ImagesProcessor.get_face_vectors(face_centers_2)
+#     assert len(face_vectors_2) == 2
+#     assert face_vectors_2[0][0] == -0.8374351868224612
+#     assert face_vectors_2[0][1] == 0.5465366482420273
+#
+#     assert face_vectors_2[1][0] == 0.8374351868224612
+#     assert face_vectors_2[1][1] == -0.5465366482420273
 
 
 def test_process_images():
-    img_gs_uris = ["gs://drm-hack-the-north.appspot.com/process/F0F8A625-07FF-4869-AD3B-821666C27777"
-                   "/livePhoto_extracted_frame_" + str(i) + ".jpg"
-                   for i in range(0, 12)]
+    img_gs_uris = ["gs://drm-hack-the-north.appspot.com/process/test/" + str(i) + ".png"
+                   for i in range(1, 13)]
     bucket_name = "drm-hack-the-north.appspot.com"
     vision_client = vision.ImageAnnotatorClient()
     storage_client = storage.Client()
